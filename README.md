@@ -1,9 +1,12 @@
 # 537_MusicRec
 ### Team Members 
-Ke Wang	   kw754
-Weiyi Li                wl468
-J Yoon Lee	   jl3699
-Weiqiang Zheng  wz347
+Ke Wang
+
+Weiyi Li
+
+J Yoon Lee
+
+Weiqiang Zheng
 
 ### Project Summary:
 With the growing popularity of streaming music platforms such as Pandora, Spotify, Apple music, automatic playlist continuation (APC) has drawn increasing attention in recent years. 
