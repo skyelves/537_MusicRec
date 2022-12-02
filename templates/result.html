@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head></head>
+<body>
+
+<!doctype html>
+<table border = 1>
+    {% for value in result %}
+
+    <tr>
+        <th> {{ value }} </th>
+<!--        <td> {{ value }} </td>-->
+    </tr>
+
+    {% endfor %}
+</table>
+
+<form action = "http://localhost:5000/" method = "get">
+    <p><input type = "submit" value = "Go Back" /></p>
+</form>
+</body>
+</html>
