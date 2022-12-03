@@ -1,0 +1,79 @@
+h3 {
+    color: white;
+    font-family: Shanti;
+    font-size: 2em;
+    background-color: slategray;
+    text-align: center;
+}
+
+body {
+    background-color: slategray;
+    text-align: center;
+}
+
+table {
+    color: white;
+    font-family: Shanti;
+    font-size: 1.2em;
+    border: white;
+    text-align: center;
+    align-self: center;
+}
+
+tr {
+    color: white;
+    font-family: Shanti;
+    font-size: 1.2em;
+    margin: 20px;
+    border: white;
+    text-align: center;
+}
+
+p {
+    color: white;
+    font-family: Shanti;
+    font-size: 1.2em;
+    margin: 20px;
+}
+
+img {
+    margin: 60px 0 30px 0;
+    width: 350px;
+}
+
+input {
+    width: 300px;
+    margin: 20px;
+    border: none;
+    border-radius: 10px;
+    font-family: Shanti;
+    text-align: center;
+    font-size: 1.3em;
+}
+
+input:focus {
+    border: solid 5px #00FFCE;
+    outline: none;
+}
+
+#submit {
+    background-color: palevioletred;
+    color: white;
+    width: 200px;
+}
+
+#submit:hover {
+    background-color: mediumvioletred;
+    cursor: pointer;
+}
+
+#back {
+    background-color: palevioletred;
+    color: white;
+    width: 200px;
+}
+
+#back:hover {
+    background-color: mediumvioletred;
+    cursor: pointer;
+}
