@@ -4,7 +4,7 @@ Ke Wang
 
 Weiyi Li
 
-J Yoon Lee
+Ji Yoon Lee
 
 Weiqiang Zheng
 
