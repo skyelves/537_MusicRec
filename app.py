@@ -3,10 +3,10 @@ import bqclient
 
 
 # Backend
-def recommendStrategy(keyword):
+def recommendStrategy(genre, artist):
     # based on the query(a list of names of music), generate a list of music, and return it
     client = bqclient.create_bqclient("setup/key-file.json")
-    res = bqclient.run_query(client, keyword)
+    res = bqclient.run_query(client, genre)
     print(res)
     # todo: implement recommend strategy here
     # connect db, and query from database, talk with guys responsible for part 1
@@ -25,8 +25,9 @@ def index():
 @app.route('/result', methods=['POST', 'GET'])
 def result():
     if request.method == 'POST':
-        keyword = request.form['Keyword']
-        result = recommendStrategy(keyword)
+        artist = request.form['artist']
+        genre = request.form['genre']
+        result = recommendStrategy(artist, genre)
         return render_template("result.html", result=result)
 
 
