@@ -3,7 +3,7 @@ import bqclient
 
 
 # Backend
-def recommendStrategy(genre, artist):
+def recommendStrategy(genre, artist, number):
     # based on the query(a list of names of music), generate a list of music, and return it
     client = bqclient.create_bqclient("setup/key-file.json")
     res = bqclient.run_query(client, genre)
@@ -27,7 +27,8 @@ def result():
     if request.method == 'POST':
         artist = request.form['artist']
         genre = request.form['genre']
-        result = recommendStrategy(artist, genre)
+        number = request.form['number']
+        result = recommendStrategy(artist, genre, number)
         return render_template("result.html", result=result)
 
 
