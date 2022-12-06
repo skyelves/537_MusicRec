@@ -3,18 +3,17 @@ import bqclient
 
 
 # Backend
-def recommendStrategy(genre, artist, number):
+def recommendStrategy(artist, genre, number):
     # based on the query(a list of names of music), generate a list of music, and return it
-    client = bqclient.create_bqclient("setup/key-file.json")
-    res = bqclient.run_query(client, genre)
-    print(res)
+    res = bqclient.run_query(client, artist, genre, number)
     # todo: implement recommend strategy here
     # connect db, and query from database, talk with guys responsible for part 1
-    return res["track_name"].values  # a list of music including/related to the keyword
+    return res  # a list of music including/related to the keyword
 
 
 # Frontend
 app = Flask(__name__)
+client = bqclient.create_bqclient("setup/key-file.json")
 
 
 @app.route('/')
