@@ -44,7 +44,9 @@ In this project, we will use collected online data through Spotify API and AIcro
 
 ## Key features of the project and Technical Challenges
 
-1. We implemented a simple yet beautifull user interface on web using Flask. This enables users to easily interact with the system. This is a technical challenge for us since we have to learn how to use Flask. Below are two screenshots of our user interface. ![截屏2022-12-08 下午6.06.28](/Users/weiqiangsmac/Dropbox/Mac (2)/Desktop/截屏2022-12-08 下午6.06.28.png)![截屏2022-12-08 下午6.14.08](/Users/weiqiangsmac/Dropbox/Mac (2)/Desktop/截屏2022-12-08 下午6.14.08.png)
+1. We implemented a simple yet beautifull user interface on web using Flask. This enables users to easily interact with the system. This is a technical challenge for us since we have to learn how to use Flask. Below are two screenshots of our user interface. ![1](../Report/1.png)
+
+   ![2](../Report/2.png)
 
 2. In the implementation of our recommendation function, we included two complex SQL queries, each with multiple joins and aggregation. 
 
