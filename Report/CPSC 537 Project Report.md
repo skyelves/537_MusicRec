@@ -44,7 +44,7 @@ In this project, we will use collected online data through Spotify API and AIcro
 
 ## Key features of the project and Technical Challenges
 
-1. We implemented a simple yet beautifull user interface on web using Flask. This enables users to easily interact with the system. This is a technical challenge for us since we have to learn how to use Flask. Below are two screenshots of our user interface. ![1](../Report/1.png)
+1. We implemented a simple yet beautifull user interface on web using **Flask, HTML, and CSS**. This enables users to easily interact with the system. Below are two screenshots of our user interface. The main architecture of the web is implemented in **HTML** (`./templates/input.html` and `./templates/result.html`), with **CSS** (`./static/css/main.css`) to format the layout of webpages. We use **Flask**(`./app.py`) to render the html and interact with the backend. ![1](../Report/1.png)
 
    ![2](../Report/2.png)
 
