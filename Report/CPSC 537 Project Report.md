@@ -23,20 +23,25 @@ In this project, we will use collected online data through Spotify API and AIcro
 
 ## Description of Data
 
-1. The first dataset we utilize is collected through [Spotify API][1]. We retrieve information about artists, albums, and tracks, as well as data about a user's listening history and preferences.
+1. The first data source is the [*Spotify Million Playlist Dataset Challenge*][1] dataset, which contains thousands of playlists' information.
 
-2. The second dataset is the [*Spotify Million Playlist Dataset Challenge*][2], which is a dataset and open-ended challenge for music recommendation research. 
+2. The second data source we utilize is [Spotify API][2]. We implement a Python class [SpotifyAPI][3] to interact with it. Based on all the tracks' id from the playlists in the first dataset, we retrieve information about related artists, albums, and tracks from Spotify.
 
-   [1]: https://developer.spotify.com/documentation/web-api/	"Spotify API"
-   [2]: https://www.aicrowd.com/challenges/spotify-million-playlist-dataset-challenge	"Spotify Million Playlist Dataset Challenge"
+   [1]: https://www.aicrowd.com/challenges/spotify-million-playlist-dataset-challenge	"Spotify Million Playlist Dataset Challenge"
+   [2]: https://developer.spotify.com/documentation/web-api/	"Spotify API"
+   [3]: ../database/spotify_client.py
 
 ## Basic architecture
 
-1. Data collection: This part is responsible for collecting data about the songs and artists.  We collected data from Spotify API and an online recommendation challenge dataset. The details of the data that we gathered is given above in the "Description of Data" section. 
+1. Data collection and processing: This part is responsible for manipulating data from the two sources and preprocessing them before populating the tables in database system. The [*Spotify Million Playlist Dataset Challenge*][1] dataset can be directly downloaded in a json format. To retrieve information from Spotify, we initialize the client object and send requests to return corresponding music data. Related codes are in [get_data.ipynb][4].
+   
+   [4]: ../database/get_data.ipynb
 
-2. Data processing: This part is responsible for cleaning and preprocessing the data collected from various sources, and organizing it into a form that can be used by the recommendation function. We cleaned the data using Python and then stored the data in BigQuery on Google Could Forms. The data is organized in four tables: album, artists, playlist, and tracks. 
+2. Database Schema: We create a dataset called *music_data* in BigQuery on Google Cloud Platform. This dataset includes 4 tables: *playlist*, *tracks*, *albums*, *artists*. After data cleaning, we populate the 4 tables. The schema is shown as below.
 
-3. Recommendation function: Implementing a sophisticated recommendation algorithm is beyond the scope of this project, as the main goal is to use the database system in a pratical application. Thus we implemented two simply recommendation strategis: (1) If the user submits a name of artist, we will return a list of songs by this artist and similar artists. (2) If the user submits a genre of music, we will return a list of songs related genres. The two strategies, are simple by requires *complex* SQL queries with multiple joins, subqueries, and aggregation. 
+   ![3](3.jpg)
+
+3. Recommendation function: Implementing a sophisticated recommendation algorithm is beyond the scope of this project, as the main goal is to use the database system in a pratical application. We provide 3 parameters for the user to enter: *Artist*, *Genre* and *Number*. Users can type in the artist name and/or genre they are interested in and decide how many tracks they want to return. The default number of songs is 10. After passing in these arguments, our recommendation function can return the required number of most popular songs in the category defined by *Artist* and *Genre*. If there are no matching songs, the function will return the most popular songs in the union sets.
 
 4. User interface: This part is responsible for presenting the recommendations to users and allowing them to interact with the system. We used [Flask][3] to bulid the user interface. User may submit "Artist", "Genre", "Number" and get a list of recommended songs with the specified number. 
 
@@ -44,15 +49,15 @@ In this project, we will use collected online data through Spotify API and AIcro
 
 ## Key features of the project and Technical Challenges
 
-1. We implemented a simple yet beautifull user interface on web using **Flask, HTML, and CSS**. This enables users to easily interact with the system. Below are two screenshots of our user interface. The main architecture of the web is implemented in **HTML** (`./templates/input.html` and `./templates/result.html`), with **CSS** (`./static/css/main.css`) to format the layout of webpages. We use **Flask**(`./app.py`) to render the html and interact with the backend. ![1](../Report/1.png)
-
+1. We implemented a simple yet beautifull user interface on web using **Flask, HTML, and CSS**. This enables users to easily interact with the system. Below are two screenshots of our user interface. The main architecture of the web is implemented in **HTML** (`./templates/input.html` and `./templates/result.html`), with **CSS** (`./static/css/main.css`) to format the layout of webpages. We use **Flask**(`./app.py`) to render the html and interact with the backend. 
+   ![1](../Report/1.png)
    ![2](../Report/2.png)
 
 2. In the implementation of our recommendation function, we included two complex SQL queries, each with multiple joins and aggregation. 
 
    ```sql
-   						SELECT tracks.track_name
-     					FROM music_data.tracks
+   			SELECT tracks.track_name
+     			FROM music_data.tracks
                LEFT JOIN music_data.albums
                ON tracks.album_id = albums.album_id
                LEFT JOIN music_data.artists 
@@ -64,7 +69,7 @@ In this project, we will use collected online data through Spotify API and AIcro
    ```
 
    ```sql
-   					SELECT tracks.track_name
+   			SELECT tracks.track_name
                FROM music_data.tracks
                LEFT JOIN music_data.albums
                ON tracks.album_id = albums.album_id
